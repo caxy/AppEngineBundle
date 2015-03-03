@@ -1,0 +1,24 @@
+parameters:
+    session.handler.memcache.class: google\appengine\ext\session\MemcacheSessionHandler
+    session.handler.pdo.class: Symfony\Component\HttpFoundation\Session\Storage\Handler\PdoSessionHandler
+
+    app_engine.provider.user.class: Caxy\AppEngine\Bridge\Security\User\UserProvider
+    app_engine.user.class: Caxy\AppEngine\Bridge\Security\User\User
+
+services:
+    pdo:
+        class: PDO
+        arguments: [ %app_engine.default_database_dsn%, %database_user%, %database_password% ]
+
+    session.handler.memcache:
+        class:     %session.handler.memcache.class%
+
+    session.handler.pdo:
+        class:     %session.handler.pdo.class%
+        public: false
+        arguments:
+            - %app_engine.default_database_dsn%
+            - { db_username: %database_user%, db_password: %database_password% }
+
+    app_engine.provider.user:
+        class: %app_engine.provider.user.class%
