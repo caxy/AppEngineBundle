@@ -1,0 +1,14 @@
+parameters:
+    app_engine.session.handler.memcache.class: google\appengine\ext\session\MemcacheSessionHandler
+    session.handler.pdo.class: Symfony\Component\HttpFoundation\Session\Storage\Handler\PdoSessionHandler
+
+services:
+    session.handler.memcache:
+        class:     %app_engine.session.handler.memcache.class%
+
+    session.handler.pdo:
+        class:     %session.handler.pdo.class%
+        public: false
+        arguments:
+            - %app_engine.default_database_dsn%
+            - { db_username: %database_user%, db_password: %database_password% }
