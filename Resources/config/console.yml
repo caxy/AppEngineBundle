@@ -1,0 +1,8 @@
+parameters:
+    console.application.class: Symfony\Bundle\FrameworkBundle\Console\Application
+
+services:
+    console.application:
+        class: %console.application.class%
+        arguments:
+            - @kernel
