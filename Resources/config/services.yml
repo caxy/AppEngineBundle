@@ -3,9 +3,5 @@ parameters:
     app_engine.user.class: Caxy\AppEngine\Bridge\Security\User\User
 
 services:
-    pdo:
-        class: PDO
-        arguments: [ %app_engine.default_database_dsn%, %database_user%, %database_password% ]
-
     app_engine.provider.user:
         class: %app_engine.provider.user.class%

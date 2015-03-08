@@ -1,0 +1,4 @@
+services:
+    pdo:
+        class: PDO
+        arguments: [ %app_engine.default_database_dsn%, %database_user%, %database_password% ]
