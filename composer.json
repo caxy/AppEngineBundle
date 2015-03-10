@@ -11,6 +11,9 @@
     "autoload": {
         "psr-4": { "Caxy\\Bundle\\AppEngineBundle\\": "" }
     },
+    "require": {
+        "google/apiclient": "~1.1@dev"
+    },
     "extra": {
         "branch-alias": {
             "dev-master": "1.0.x-dev"
