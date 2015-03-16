@@ -2,6 +2,7 @@
 
 namespace Caxy\Bundle\AppEngineBundle\DependencyInjection;
 
+use google\appengine\api\app_identity\AppIdentityService;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
@@ -23,10 +24,23 @@ class CaxyAppEngineExtension extends Extension
         $config = $this->processConfiguration($configuration, $configs);
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $loader->load('app_identity.yml');
         $loader->load('console.yml');
         $loader->load('db.yml');
         $loader->load('memcache.yml');
         $loader->load('security.yml');
         $loader->load('session.yml');
+
+        $this->setAppIdentityParameters($container);
+    }
+
+    /**
+     * @param ContainerBuilder $container
+     */
+    private function setAppIdentityParameters(ContainerBuilder $container)
+    {
+        $container->setParameter('app_engine.application_id', AppIdentityService::getApplicationId());
+        $container->setParameter('app_engine.default_version_hostname', AppIdentityService::getDefaultVersionHostname());
+        $container->setParameter('app_engine.service_identity', AppIdentityService::getServiceAccountName());
     }
 }
