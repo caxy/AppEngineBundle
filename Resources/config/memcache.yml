@@ -1,0 +1,10 @@
+parameters:
+    app_engine.memcache.class: Memcache
+    app_engine.memcached.class: Memcached
+
+services:
+    app_engine.memcache:
+        class: %app_engine.memcache.class%
+
+    app_engine.memcached:
+        class: %app_engine.memcached.class%
