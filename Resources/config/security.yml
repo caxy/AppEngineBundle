@@ -5,3 +5,11 @@ parameters:
 services:
     app_engine.provider.user:
         class: %app_engine.provider.user.class%
+
+    app_engine.security.authentication.provider:
+        class: FOS\UserBundle\Security\UserProvider
+        arguments: ["", "%kernel.cache_dir%/security/nonces"]
+
+    app_engine.security.authentication.listener:
+        class: AppBundle\Security\Firewall\Listener
+        arguments: ["@security.token_storage", "@security.authentication.manager"]
