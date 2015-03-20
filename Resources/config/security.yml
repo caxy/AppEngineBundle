@@ -11,5 +11,5 @@ services:
         arguments: ["", "%kernel.cache_dir%/security/nonces"]
 
     app_engine.security.authentication.listener:
-        class: AppBundle\Security\Firewall\Listener
+        class: Caxy\AppEngine\Bundle\Security\Firewall\Listener
         arguments: ["@security.token_storage", "@security.authentication.manager"]
