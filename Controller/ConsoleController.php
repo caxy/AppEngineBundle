@@ -13,8 +13,7 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Regex;
 
 /**
- * Class CommandController
- * @package AppBundle\Controller
+ * Class CommandController.
  *
  * @Sensio\Route("/_console")
  */
@@ -23,8 +22,11 @@ class ConsoleController extends Controller
     /**
      * @Sensio\Route("/")
      * @Sensio\Template()
+     *
      * @param Request $request
+     *
      * @return Response
+     *
      * @throws \Exception
      */
     public function indexAction(Request $request)
