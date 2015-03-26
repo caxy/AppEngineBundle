@@ -1,15 +1,14 @@
 parameters:
     app_engine.provider.user.class: Caxy\AppEngine\Bridge\Security\User\UserProvider
+    app_engine.provider.authentication.class: Caxy\AppEngine\Bridge\Security\Authentication\Provider
+    app_engine.listener.authentication.class: Caxy\AppEngine\Bridge\Security\Firewall\Listener
     app_engine.user.class: Caxy\AppEngine\Bridge\Security\User\User
 
 services:
-    app_engine.provider.user:
-        class: %app_engine.provider.user.class%
-
     app_engine.security.authentication.provider:
-        class: FOS\UserBundle\Security\UserProvider
-        arguments: ["", "%kernel.cache_dir%/security/nonces"]
+        class: %app_engine.provider.authentication.class%
+        arguments: [""]
 
     app_engine.security.authentication.listener:
-        class: Caxy\AppEngine\Bundle\Security\Firewall\Listener
+        class: %app_engine.listener.authentication.class%
         arguments: ["@security.token_storage", "@security.authentication.manager"]
