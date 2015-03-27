@@ -32,6 +32,9 @@ class CaxyAppEngineExtension extends Extension
         $loader->load('session.yml');
 
         $this->setAppIdentityParameters($container);
+
+        $definition = $container->getDefinition('app_engine.provider.user');
+        $definition->setArguments(array($config['security']['grant_user_role'], $config['security']['grant_admin_role']));
     }
 
     /**

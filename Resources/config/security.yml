@@ -5,6 +5,9 @@ parameters:
     app_engine.user.class: Caxy\AppEngine\Bridge\Security\User\User
 
 services:
+    app_engine.provider.user:
+        class: %app_engine.provider.user.class%
+
     app_engine.security.authentication.provider:
         class: %app_engine.provider.authentication.class%
         arguments: [""]
