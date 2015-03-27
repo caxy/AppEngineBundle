@@ -2,7 +2,7 @@ parameters:
     app_engine.provider.user.class: Caxy\AppEngine\Bridge\Security\User\AppEngineUserProvider
     app_engine.security.authentication.provider.class: Caxy\AppEngine\Bridge\Security\Authentication\AppEngineAuthenticationProvider
     app_engine.security.authentication.listener.class: Caxy\AppEngine\Bridge\Security\Firewall\AppEngineAuthenticationListener
-    app_engine.user.class: Caxy\AppEngine\Bridge\Security\User\User
+    app_engine.user.class: Caxy\AppEngine\Bridge\Security\User\AppEngineUser
 
 services:
     app_engine.provider.user:
@@ -14,5 +14,7 @@ services:
 
     app_engine.security.authentication.listener:
         class: %app_engine.security.authentication.listener.class%
-        arguments: ["@security.token_storage", "@security.authentication.manager"]
+        arguments: ["@security.token_storage", "@security.authentication.manager", "@?logger", "@?event_dispatcher"]
         abstract: true
+        tags:
+            - { name: monolog.logger, channel: security }
