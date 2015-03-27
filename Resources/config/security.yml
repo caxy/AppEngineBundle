@@ -1,7 +1,7 @@
 parameters:
-    app_engine.provider.user.class: Caxy\AppEngine\Bridge\Security\User\UserProvider
-    app_engine.provider.authentication.class: Caxy\AppEngine\Bridge\Security\Authentication\Provider
-    app_engine.listener.authentication.class: Caxy\AppEngine\Bridge\Security\Firewall\Listener
+    app_engine.provider.user.class: Caxy\AppEngine\Bridge\Security\User\AppEngineUserProvider
+    app_engine.security.authentication.provider.class: Caxy\AppEngine\Bridge\Security\Authentication\AppEngineAuthenticationProvider
+    app_engine.security.authentication.listener.class: Caxy\AppEngine\Bridge\Security\Firewall\AppEngineAuthenticationListener
     app_engine.user.class: Caxy\AppEngine\Bridge\Security\User\User
 
 services:
@@ -9,9 +9,10 @@ services:
         class: %app_engine.provider.user.class%
 
     app_engine.security.authentication.provider:
-        class: %app_engine.provider.authentication.class%
-        arguments: [""]
+        class: %app_engine.security.authentication.provider.class%
+        arguments: [~]
 
     app_engine.security.authentication.listener:
-        class: %app_engine.listener.authentication.class%
+        class: %app_engine.security.authentication.listener.class%
         arguments: ["@security.token_storage", "@security.authentication.manager"]
+        abstract: true
