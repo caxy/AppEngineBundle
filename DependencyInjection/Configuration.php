@@ -24,24 +24,6 @@ class Configuration implements ConfigurationInterface
         // configure your bundle. See the documentation linked above for
         // more information on that topic.
 
-        $rootNode
-            ->children()
-                ->arrayNode('security')
-                    ->addDefaultsIfNotSet()
-                    ->children()
-                        ->arrayNode('grant_admin_role')
-                            ->prototype('scalar')->end()
-                            ->defaultValue(array('ROLE_SUPER_ADMIN'))
-                        ->end()
-                        ->arrayNode('grant_user_role')
-                            ->prototype('scalar')->end()
-                            ->defaultValue(array('ROLE_USER'))
-                        ->end()
-                    ->end()
-                ->end()
-            ->end()
-        ->end();
-
         return $treeBuilder;
     }
 }
