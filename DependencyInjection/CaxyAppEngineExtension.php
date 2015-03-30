@@ -39,8 +39,10 @@ class CaxyAppEngineExtension extends Extension
      */
     private function setAppIdentityParameters(ContainerBuilder $container)
     {
-        $container->setParameter('app_engine.application_id', AppIdentityService::getApplicationId());
-        $container->setParameter('app_engine.default_version_hostname', AppIdentityService::getDefaultVersionHostname());
-        $container->setParameter('app_engine.service_identity', AppIdentityService::getServiceAccountName());
+        if (class_exists('google\appengine\api\app_identity\AppIdentityService')) {
+            $container->setParameter('app_engine.application_id', AppIdentityService::getApplicationId());
+            $container->setParameter('app_engine.default_version_hostname', AppIdentityService::getDefaultVersionHostname());
+            $container->setParameter('app_engine.service_identity', AppIdentityService::getServiceAccountName());
+        }
     }
 }
