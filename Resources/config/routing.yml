@@ -1,0 +1,3 @@
+appengine:
+    resource: @CaxyAppEngineBundle/Controller/
+    type: annotation
