@@ -1,0 +1,6 @@
+parameters:
+    app_engine.mailer.transport.class: Caxy\AppEngine\Bridge\Swiftmailer\AppEngineTransport
+
+services:
+    app_engine.mailer.transport:
+        class: %app_engine.mailer.transport.class%

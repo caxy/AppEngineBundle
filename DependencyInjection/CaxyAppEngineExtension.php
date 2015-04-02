@@ -27,6 +27,7 @@ class CaxyAppEngineExtension extends Extension
         $loader->load('app_identity.yml');
         $loader->load('console.yml');
         $loader->load('db.yml');
+        $loader->load('mailer.yml');
         $loader->load('memcache.yml');
         $loader->load('security.yml');
         $loader->load('session.yml');
