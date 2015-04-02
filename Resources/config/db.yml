@@ -1,5 +1,5 @@
 parameters:
-    app_engine.default_database_dsn: mysql:unix_socket=%database_unix_socket%;dbname=%database_name%
+    app_engine.default_database_dsn: %default_database_dsn%
 
 services:
     pdo:
