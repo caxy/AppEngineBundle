@@ -15,13 +15,16 @@ class SecurityController
     /**
      * @Sensio\Route("/logout")
      *
+     * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      *
      * @throws \google\appengine\api\users\UsersException
      */
-    public function logoutAction()
+    public function logoutAction(Request $request)
     {
-        $url = UserService::createLogoutURL('/');
+        $destination = $request->query->get('destination', '/');
+
+        $url = UserService::createLogoutURL($destination);
 
         return RedirectResponse::create($url, 307, array('cache-control' => 'no-cache'));
     }
