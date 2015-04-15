@@ -16,7 +16,8 @@ class SecurityController
      * @Sensio\Route("/logout")
      *
      * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     *
+     * @return RedirectResponse
      *
      * @throws \google\appengine\api\users\UsersException
      */
